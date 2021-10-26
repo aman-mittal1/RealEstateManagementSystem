@@ -11,7 +11,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class CustomerController implements ICustomerController{
+import com.mph5.model.Buyer;
+import com.mph5.model.Customer;
+
+public class CustomerController implements ICustomerController {
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	Session session = sessionFactory.openSession();
 	Scanner sc = new Scanner(System.in);
@@ -23,33 +26,40 @@ public class CustomerController implements ICustomerController{
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:
-			Customer customer = new Byer();
-			Customer customer = CreateCustomer(customer);
-			session.save(customer);
+			Customer customer = new Customer();
+			Customer customer1 = CreateCustomer(customer);
+			System.out.println("Enter buyer Id: ");
+			int buyer_id = sc.nextInt();
+			Buyer buyer = new Buyer(buyer_id, customer1);
+			session.save(buyer);
 			transaction.commit();
 			break;
-		case 2:
-			Customer customer = new Seller();
-			Customer customer = CreateCustomer(customer);
-			customer = createProperty(customer);
-			session.save(customer);
-			transaction.commit();
-			break;
+//		case 2:
+//			Customer customerSeller = new Seller();
+//			Customer customerSeller1 = CreateCustomer(customerSeller);
+//			customerSeller1 = createProperty(customer);
+//			session.save(customerSeller1);
+//			transaction.commit();
+//			break;
 		default:
 			break;
 		}
 
 	}
 
-	@Override
 	private Customer CreateCustomer(Customer customer) {
+		
+		System.out.println("Enter Customer id: ");
+		customer.setCustomerId(sc.nextInt());
 		System.out.println("Enter First Name: ");
-		customer.setFname(sc.next());
+		customer.setfName(sc.next());
 
 		System.out.println("Enter Last Name: ");
-		customer.setLname(sc.next());
+		customer.setlName(sc.next());
 
 		System.out.println("Enter Phone: ");
+		customer.setPhoneNumber(sc.next());
+		
 		System.out.println("Enter email: ");
 		customer.setEmail(sc.next());
 
@@ -57,7 +67,7 @@ public class CustomerController implements ICustomerController{
 		customer.setPan(sc.next());
 
 		System.out.println("Enter Aadhar Number: ");
-		customer.setAadhar(sc.next());
+		customer.setAdhar(sc.next());
 
 		boolean flag_pwd = true;
 		while (flag_pwd) {
@@ -76,7 +86,7 @@ public class CustomerController implements ICustomerController{
 	}
 //---------------------------------------------------------------------
 
-	private Customer createProperty(Customer customer) {
+	/*private Customer createProperty(Customer customer) {
 		boolean addProp = true;
 		List<Property> property_List = new ArrayList<Property>();
 		while (addProp) {
@@ -115,27 +125,27 @@ public class CustomerController implements ICustomerController{
 
 		customer.setProperty(property_List);
 		return customer;
-	}
-	
-	//--------------------------------------------------------------
+	}*/
+
+	// --------------------------------------------------------------
 	@Override
 	public void viewCustomer() {
 		Transaction transaction = session.beginTransaction();
-		Query query = session.createQuery("from Customer");
+		Query query = session.createQuery("from Buyer");
 		List<Customer> customer_List = query.list();
 		Iterator<Customer> itr = customer_List.iterator();
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			System.out.println(itr.next());
 		}
 	}
 
 	@Override
 	public void updateCustomer() {
-		Transaction txn = session.beginTransaction();
-        Query qry =session.createQuery("update Employee set lname=:nam where eid=101").setString("nam", "run");
-        int noofrows = qry.executeUpdate();        
-        txn.commit();
-        System.out.println("Update is successful !!!");		
+		/*Transaction txn = session.beginTransaction();
+		Query qry = session.createQuery("update Employee set lname=:nam where eid=101").setString("nam", "run");
+		int noofrows = qry.executeUpdate();
+		txn.commit();
+		System.out.println("Update is successful !!!");*/
 	}
 
 }
