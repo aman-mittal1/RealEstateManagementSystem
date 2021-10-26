@@ -13,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.mph5.model.Buyer;
 import com.mph5.model.Customer;
+import com.mph5.model.Seller;
 
 public class CustomerController implements ICustomerController {
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -34,13 +35,16 @@ public class CustomerController implements ICustomerController {
 			session.save(buyer);
 			transaction.commit();
 			break;
-//		case 2:
-//			Customer customerSeller = new Seller();
-//			Customer customerSeller1 = CreateCustomer(customerSeller);
+		case 2:
+			Customer customerSeller = new Customer();
+			Customer customerSeller1 = CreateCustomer(customerSeller);
+			System.out.println("Enter Seller Id: ");
+			int seller_id = sc.nextInt();
+			Seller seller = new Seller(seller_id, customerSeller1);
 //			customerSeller1 = createProperty(customer);
-//			session.save(customerSeller1);
-//			transaction.commit();
-//			break;
+			session.save(seller);
+			transaction.commit();
+			break;
 		default:
 			break;
 		}
