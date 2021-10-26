@@ -22,7 +22,7 @@ public class CustomerController implements ICustomerController {
 	public void addCustomer() {
 		Transaction transaction = session.beginTransaction();
 
-		System.out.println("1.As Byer /n2.As seller");
+		System.out.println("1.As Byer \n2.As seller");
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:
