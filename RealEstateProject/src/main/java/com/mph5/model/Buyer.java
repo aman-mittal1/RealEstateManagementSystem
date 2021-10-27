@@ -1,35 +1,20 @@
 package com.mph5.model;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+
 
 @Entity
-public class Buyer {
-	@Id
+public class Buyer extends Customer {
 	private int buyerId;
-	
-	@Column
-	@Embedded
-	private Customer customer;
 
-	public Buyer(int buyerId, Customer customer) {
-		super();
-		this.buyerId = buyerId;
-		this.customer = customer;
-	}
-
-	public Buyer() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "Buyer [buyerId=" + buyerId + "]";
 	}
 
 	public int getBuyerId() {
@@ -40,17 +25,14 @@ public class Buyer {
 		this.buyerId = buyerId;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Buyer() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	@Override
-	public String toString() {
-		return "Buyer [buyerId=" + buyerId + ", customer=" + customer + "]";
+	public Buyer(int buyerId) {
+		super();
+		this.buyerId = buyerId;
 	}
 	
 	}

@@ -1,9 +1,20 @@
 package com.mph5.model;
-import javax.persistence.Embeddable;
 
-@Embeddable
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Customer {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int customerId;
+	@Column
 	private String fName;
 	private String lName;
 	private String phoneNumber;
