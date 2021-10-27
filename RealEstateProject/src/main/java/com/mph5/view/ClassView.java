@@ -13,7 +13,7 @@ public class ClassView {
 		Scanner sc = new Scanner(System.in);
 
 		while (flag) {
-			System.out.println("1.Add Customer /n2.View Customer /n3.Update Customer /n4.To Exit");
+			System.out.println("1.Add Customer \n2.View Customer \n3.Update Customer \n4.To Exit");
 			switch (sc.nextInt()) {
 			case 1:
 				cusCon.addCustomer();

@@ -1,4 +1,9 @@
 package com.mph5.model;
+<<<<<<< HEAD
+=======
+
+import javax.persistence.Embeddable;
+>>>>>>> fbbceeafb01cb4dfe0802600f6d3c02eb0bfa3e4
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
