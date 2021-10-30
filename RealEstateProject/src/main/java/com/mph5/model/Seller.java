@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Seller {
+public class Seller extends Customer {
 	@Id
 	private int sellerId;
 	
